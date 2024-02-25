@@ -17,7 +17,7 @@ namespace FaceMovie.tests.AppTests
         {
             var args = new string[] { "-i", "inputDir", "-o", "outputDir", "-r", "reference.jpg" };
             var result = Parser.Default.ParseArguments<CommandLineOptions>(args);
-            Assert.IsTrue(result.Tag == ParserResultType.Parsed);
+            Assert.That(result.Tag, Is.EqualTo(ParserResultType.Parsed));           
         }
 
         [Test]
@@ -25,7 +25,7 @@ namespace FaceMovie.tests.AppTests
         {
             var args = new string[] { "-i", "inputDir" }; // Missing required options
             var result = Parser.Default.ParseArguments<CommandLineOptions>(args);
-            Assert.IsTrue(result.Tag == ParserResultType.NotParsed);
+            Assert.That(result.Tag, Is.EqualTo(ParserResultType.NotParsed));
         }
     }
 }
