@@ -12,11 +12,11 @@
     <PackageReference Include="DlibDotNet" Version="19.21.0.20220724" />
     <PackageReference Include="FFmpeg.AutoGen" Version="6.1.0" />
     <PackageReference Include="Magick.NET.Core" Version="13.6.0" />
+    <PackageReference Include="NUnit" Version="4.1.0" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="docs\" />
-    <Folder Include="tests\AppTests\" />
   </ItemGroup>
 
 </Project>
