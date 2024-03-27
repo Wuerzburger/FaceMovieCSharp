@@ -16,7 +16,7 @@ namespace FaceMovie.src.App
         public string OutputDirectory { get; set; }
 
         [Option('s', "size", Required = false, HelpText = "Target size for resizing images. Format: widthxheight")]
-        public string Size { get; set; }
+        public int Size { get; set; }
 
         [Option('r', "reference", Required = true, HelpText = "Reference image for alignment.")]
         public string ReferenceImage { get; set; }

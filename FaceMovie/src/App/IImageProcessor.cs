@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FaceMovie.src.App
 {
-    internal interface IImageProcessor
+    public interface IImageProcessor
     {
+        void ResizeImages(string inputDirectory, string outputDirectory, int targetSize);
     }
 }

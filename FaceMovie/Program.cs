@@ -1,6 +1,7 @@
 ﻿// See https://aka.ms/new-console-template for more information
 using CommandLine;
 using FaceMovie.src.App;
+using System.IO.Abstractions;
 
 Console.WriteLine("Hello, World!");
 
@@ -9,22 +10,17 @@ partial class Program
     static void Main(string[] args)
     {
         Parser.Default.ParseArguments<CommandLineOptions>(args)
-               .WithParsed<CommandLineOptions>(opts => RunApplication(opts))
-               .WithNotParsed<CommandLineOptions>((errs) => HandleParseError(errs));
-    }
+        .WithParsed<CommandLineOptions>(opts =>
+        {
+            var fileSystem = new FileSystem(); // Use the real file system here
+            var imageProcessor = new ImageProcessor(fileSystem);
+            imageProcessor.ResizeImages(opts.InputDirectory, opts.OutputDirectory, opts.Size);
 
-    static void RunApplication(CommandLineOptions opts)
-    {
-        // Application logic goes here
-        Console.WriteLine("Application started with the following options:");
-        Console.WriteLine($"Input Directory: {opts.InputDirectory}");
-        // Print other options similarly
-    }
-
-    static void HandleParseError(IEnumerable<Error> errs)
-    {
-        // Handle errors
-        Console.WriteLine("Error parsing command-line arguments");
-        // Additional error handling logic as needed
+            Console.WriteLine("Image processing completed.");
+        })
+        .WithNotParsed<CommandLineOptions>((errs) =>
+        {
+            Console.WriteLine("Error parsing command line arguments");
+        });
     }
 }

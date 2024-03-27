@@ -1,0 +1,8 @@
+{
+  "profiles": {
+    "FaceMovie": {
+      "commandName": "Project",
+      "commandLineArgs": "--input \"D:\\Benutzer\\Markus\\Documents\\face-movie\\face-movie\\Nara\" --output \"D:\\FaceMovieResized\" --size 800 --reference \"D:\\FaceMovieResized\\IMG_8990.jpg\" --alignment-directory \"D:\\FaceMovieAlign\""
+    }
+  }
+}
