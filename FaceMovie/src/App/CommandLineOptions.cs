@@ -27,6 +27,8 @@ namespace FaceMovie.src.App
         [Option('n', "outputName", Required = false, HelpText = "Name of the output video file.")]
         public string OutputName { get; set; }
 
-        // Additional options as needed
+        // Added AlignmentDirectory option
+        [Option('a', "alignment-directory", Required = true, HelpText = "Directory to save aligned images.")]
+        public string AlignmentDirectory { get; set; }
     }
 }

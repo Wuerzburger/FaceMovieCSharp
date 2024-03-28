@@ -3,24 +3,26 @@ using CommandLine;
 using FaceMovie.src.App;
 using System.IO.Abstractions;
 
-Console.WriteLine("Hello, World!");
-
 partial class Program
 {
     static void Main(string[] args)
     {
-        Parser.Default.ParseArguments<CommandLineOptions>(args)
-        .WithParsed<CommandLineOptions>(opts =>
-        {
-            var fileSystem = new FileSystem(); // Use the real file system here
-            var imageProcessor = new ImageProcessor(fileSystem);
-            imageProcessor.ResizeImages(opts.InputDirectory, opts.OutputDirectory, opts.Size);
+        var fileSystem = new FileSystem();
 
-            Console.WriteLine("Image processing completed.");
-        })
-        .WithNotParsed<CommandLineOptions>((errs) =>
-        {
-            Console.WriteLine("Error parsing command line arguments");
-        });
+        Parser.Default.ParseArguments<CommandLineOptions>(args)
+            .WithParsed<CommandLineOptions>(opts =>
+            {
+                var imageProcessor = new ImageProcessor(fileSystem);
+                imageProcessor.ResizeImages(opts.InputDirectory, opts.OutputDirectory, opts.Size);
+
+                var faceAligner = new FaceAligner(fileSystem);
+                faceAligner.AlignFaces(opts.OutputDirectory, opts.AlignmentDirectory, opts.ReferenceImage);
+
+                Console.WriteLine("Face alignment completed.");
+            })
+            .WithNotParsed<CommandLineOptions>((errs) =>
+            {
+                Console.WriteLine("Error parsing command line arguments");
+            });
     }
 }

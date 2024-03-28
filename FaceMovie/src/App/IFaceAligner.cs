@@ -6,7 +6,8 @@ using System.Threading.Tasks;
 
 namespace FaceMovie.src.App
 {
-    internal interface IFaceAligner
+    public interface IFaceAligner
     {
+        void AlignFaces(string inputDirectory, string outputDirectory, string referenceImagePath);
     }
 }
